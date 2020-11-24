@@ -10,7 +10,6 @@ from odoo.addons.quality_control.models.qc_trigger_line import \
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    @api.multi
     @api.depends('qc_inspections_ids')
     def _count_inspections(self):
         for production in self:
@@ -22,7 +21,6 @@ class MrpProduction(models.Model):
     created_inspections = fields.Integer(
         compute="_count_inspections", string="Created inspections")
 
-    @api.multi
     def post_inventory(self):
         done_moves = self.mapped('move_finished_ids').filtered(
             lambda r: r.state == 'done')

@@ -8,7 +8,6 @@ from odoo import api, fields, models
 class QcInspection(models.Model):
     _inherit = 'qc.inspection'
 
-    @api.multi
     def _prepare_inspection_header(self, object_ref, trigger_line):
         res = super(QcInspection, self)._prepare_inspection_header(
             object_ref, trigger_line)
@@ -35,7 +34,6 @@ class QcInspection(models.Model):
                     inspection.object_id._name == 'mrp.production':
                 inspection.product_id = inspection.object_id.product_id
 
-    @api.multi
     def object_selection_values(self):
         objects = super(QcInspection, self).object_selection_values()
         objects.append(('mrp.production', 'Manufacturing Order'))

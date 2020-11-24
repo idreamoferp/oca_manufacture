@@ -8,7 +8,6 @@ from odoo import api, models
 class StockPickingType(models.Model):
     _inherit = 'stock.picking.type'
 
-    @api.multi
     def _create_qc_trigger(self):
         for picking_type in self:
             qc_trigger = {
@@ -25,7 +24,6 @@ class StockPickingType(models.Model):
         picking_types.filtered("active")._create_qc_trigger()
         return picking_types
 
-    @api.multi
     def write(self, vals):
         res = super(StockPickingType, self).write(vals)
         qc_trigger_model = self.env['qc.trigger'].sudo()
