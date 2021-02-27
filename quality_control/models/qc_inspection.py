@@ -50,8 +50,7 @@ class QcInspection(models.Model):
         ondelete="set null")
     product_id = fields.Many2one(
         comodel_name="product.product", compute="_compute_product_id",
-        store=True, help="Product associated with the inspection",
-        oldname='product')
+        store=True, help="Product associated with the inspection")
     qty = fields.Float(string="Quantity", default=1.0)
     test = fields.Many2one(
         comodel_name='qc.test', string='Test', readonly=True)
@@ -269,7 +268,7 @@ class QcInspectionLine(models.Model):
     name = fields.Char(string="Question", readonly=True)
     product_id = fields.Many2one(
         comodel_name="product.product", related="inspection_id.product_id",
-        store=True,  oldname='product')
+        store=True)
     test_line = fields.Many2one(
         comodel_name='qc.test.question', string='Test question',
         readonly=True)
