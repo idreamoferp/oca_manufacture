@@ -119,6 +119,7 @@ class QcInspection(models.Model):
                 raise exceptions.UserError(
                     _("You must first set the test to perform."))
         self.write({'state': 'ready'})
+        return True
 
     
     def action_confirm(self):
